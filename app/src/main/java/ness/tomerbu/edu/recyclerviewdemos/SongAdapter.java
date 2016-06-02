@@ -19,7 +19,7 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.SongViewHolder
     private final Context context;
     //constructor that get's the inflater
     LayoutInflater inflater;
-    private final ArrayList<Song> songs;
+    final ArrayList<Song> songs;
 
 
     public SongAdapter(LayoutInflater inflater, Context context) {
@@ -61,7 +61,10 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.SongViewHolder
         return songs.size();
     }
 
-
+    public void addSong(Song s) {
+        songs.add(s);
+        notifyItemInserted(songs.size() - 1);
+    }
 
 
     //step zero:

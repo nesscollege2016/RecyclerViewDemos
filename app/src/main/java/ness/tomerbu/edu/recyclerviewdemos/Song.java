@@ -13,4 +13,13 @@ public class Song {
         this.imageResId = imageResId;
         this.artist = artist;
     }
+
+    @Override
+    public String toString() {
+        return "Song{" +
+                "title='" + title + '\'' +
+                ", imageResId=" + imageResId +
+                ", artist='" + artist + '\'' +
+                '}';
+    }
 }
