@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/etSongTitle"
+        android:hint="Song Name..."
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:layout_below="@+id/etSongTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/etSongArtist"
+        android:hint="Song Artist..."
+        android:layout_centerHorizontal="true"
+       />
+    <Button
+        android:layout_below="@+id/etSongArtist"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnSave"
+        android:layout_centerHorizontal="true"
+
+        android:text="Save"
+        />
+
+    <Button
+        android:layout_centerHorizontal="true"
+        android:layout_toRightOf="@+id/btnSave"
+        android:layout_below="@+id/etSongArtist"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnCancel"
+        android:text="Cancel"
+        />
+
+
+</RelativeLayout>

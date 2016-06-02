@@ -1,5 +1,7 @@
 package ness.tomerbu.edu.recyclerviewdemos;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,9 +15,19 @@ import java.util.ArrayList;
 /**
  * Created by android on 02/06/2016.
  */
-public class SongAdapter extends RecyclerView.Adapter<SongViewHolder> {
-
+public class SongAdapter extends RecyclerView.Adapter<SongAdapter.SongViewHolder> {
+    private final Context context;
+    //constructor that get's the inflater
+    LayoutInflater inflater;
     private final ArrayList<Song> songs;
+
+
+    public SongAdapter(LayoutInflater inflater, Context context) {
+        this.inflater = inflater;
+        this.songs = getSongs();
+        this.context = context;
+    }
+
 
     public ArrayList<Song> getSongs(){
         ArrayList<Song> songs = new ArrayList<>();
@@ -26,12 +38,6 @@ public class SongAdapter extends RecyclerView.Adapter<SongViewHolder> {
             songs.add(new Song("Itay", R.drawable.keren, "Keren Palas"));
         }
         return songs;
-    }
-    //constructor that get's the inflater
-    LayoutInflater inflater;
-    public SongAdapter(LayoutInflater inflater) {
-        this.inflater = inflater;
-        this.songs = getSongs();
     }
 
     @Override
@@ -54,29 +60,42 @@ public class SongAdapter extends RecyclerView.Adapter<SongViewHolder> {
     public int getItemCount() {
         return songs.size();
     }
-}
 
-//step zero:
+
+
+
+    //step zero:
 //the mission:
 //to get a view - > findViewById for the subViews;
-class SongViewHolder extends RecyclerView.ViewHolder{
+    class SongViewHolder extends RecyclerView.ViewHolder{
 
-    ImageView ivAlbum;
-    TextView tvArtist;
-    TextView tvSongName;
+        ImageView ivAlbum;
+        TextView tvArtist;
+        TextView tvSongName;
 
-    public SongViewHolder(View itemView) {
-        super(itemView);
-        ivAlbum = (ImageView) itemView.findViewById(R.id.ivAlbum);
-        tvArtist = (TextView) itemView.findViewById(R.id.tvArtist);
-        tvSongName = (TextView) itemView.findViewById(R.id.tvSongName);
-        itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int position = getAdapterPosition();
-                Toast.makeText(view.getContext(), "" + position, Toast.LENGTH_SHORT).show();
-            }
-        });
+        public SongViewHolder(View itemView) {
+            super(itemView);
+            ivAlbum = (ImageView) itemView.findViewById(R.id.ivAlbum);
+            tvArtist = (TextView) itemView.findViewById(R.id.tvArtist);
+            tvSongName = (TextView) itemView.findViewById(R.id.tvSongName);
 
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int position = getAdapterPosition();
+                    Song song = songs.get(position);
+                    Toast.makeText(context, song.title, Toast.LENGTH_SHORT).show();
+
+                    Intent detailsIntent = new Intent(context, SongDetailsActivity.class);
+                    detailsIntent.putExtra("SongName", song.title);
+                    detailsIntent.putExtra("Artist", song.artist);
+                    detailsIntent.putExtra("ImageResID", song.imageResId);
+                    context.startActivity(detailsIntent);
+
+                }
+            });
+        }
     }
+
 }
+

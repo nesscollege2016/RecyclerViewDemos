@@ -2,9 +2,6 @@ package ness.tomerbu.edu.recyclerviewdemos;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -13,14 +10,15 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        setContentView(R.layout.add_song_layout);
+        return;
+       // Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+/*        setSupportActionBar(toolbar);
 
         RecyclerView rv = (RecyclerView) findViewById(R.id.recyclerView);
         rv.setLayoutManager(new LinearLayoutManager(this));
-        SongAdapter adapter = new SongAdapter(getLayoutInflater());
-        rv.setAdapter(adapter);
+        SongAdapter adapter = new SongAdapter(getLayoutInflater(), this);
+        rv.setAdapter(adapter);*/
     }
 
     @Override
@@ -41,7 +39,14 @@ public class MainActivity extends AppCompatActivity {
         if (id == R.id.action_settings) {
             return true;
         }
-
+        else if (id == R.id.action_add){
+            showAddDialog();
+        }
         return super.onOptionsItemSelected(item);
     }
+
+    private void showAddDialog() {
+
+    }
+
 }
